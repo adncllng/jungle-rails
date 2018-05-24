@@ -10,6 +10,7 @@
     <h4>Thank you for your order!</h4>
   </div>
 
+  <h3>Order Total: <%= humanized_money_with_symbol @order.total_cents%></h3>
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>
