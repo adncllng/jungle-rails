@@ -1,3 +1,4 @@
+<% console %>
 <section class="cart-show">
 
   <header class="page-header">
@@ -35,6 +36,7 @@
 
   <div class="row">
     <div class="col-xs-12">
+      <% if @cart_total > 0 %>
       <%= form_tag orders_path do %>
         <script
           src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -46,6 +48,9 @@
           data-email=""
           data-currency="cad">
         </script>
+      <% end %>
+      <% else %>
+      <p>Your cart is empty, click <%= link_to 'here', :root  %> to keep shopping </p>
       <% end %>
     </div>
   </div>
