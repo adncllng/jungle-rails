@@ -12,7 +12,6 @@ class OrdersController < ApplicationController
     order  = create_order(charge)
 
     if order.valid?
-      OrderMailer.receipt_email().deliver
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
     else
@@ -35,7 +34,8 @@ class OrdersController < ApplicationController
       source:      params[:stripeToken],
       amount:      cart_total, # in cents
       description: "Khurram Virani's Jungle Order",
-      currency:    'cad'
+      currency:    'cad',
+      receipt_email: params[:stripeEmail]
     )
   end
 
