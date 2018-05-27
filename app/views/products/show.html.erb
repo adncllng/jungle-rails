@@ -30,7 +30,23 @@
         <%= render partial: "rating", collection: @ratings %>
       </dl>
     </div>
-
   </article>
+
+
+  <div class="col-sm-8">
+       <h2>Review:</h2>
+       <%= form_for Rating.new(product: @product), url: product_reviews_path(@product) do |f| %>
+         <p>
+           <%= f.label :rating %>
+           <%= f.select :rating, [0,1,2,3,4], :prompt => 'Select One' %>
+         </p>
+         <p>
+           <%= f.label :description %>
+           <%= f.text_area :description%>
+         </p>
+         <%= f.submit "Submit", class: 'btn btn-primary'%>
+       <% end %>
+     </div>
+
 
 </section>
