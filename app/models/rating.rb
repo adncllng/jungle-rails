@@ -4,6 +4,7 @@ class Rating < ActiveRecord::Base
 
   validates :product_id, presence: true
   validates :rating, presence: true
+  validates :user, presence: true
 
 end
 
