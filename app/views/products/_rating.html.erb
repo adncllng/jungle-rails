@@ -1,0 +1,14 @@
+
+  <div class="col-sm-8">
+    <dl class="dl-horizontal">
+      <dt>Rating</dt>
+      <dd><%= rating.rating %> stars</dd>
+      <dt>User</dt>
+      <dd><%= rating.user.name%></dd>
+      <dd><%= rating.description %></dd>
+      <dd><% if current_user == rating.user %>
+        <%= button_to 'Delete', product_review_path(@product, rating), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
+        <%end%>
+        <dd>
+
+  </div>
