@@ -54,6 +54,30 @@ RSpec.describe User, type: :model do
 
 
   end
+  describe'#authenticate_with_credentials' do
+    it 'should authenticate with valid credentials' do
+      subject.save
+      expect(User.authenticate_with_credentials(subject.email, subject.password)).to eq subject
+    end
+    it 'should not authenticate with invalid email' do
+      subject.save
+      expect(User.authenticate_with_credentials("s", subject.password)).to be_nil
+    end
+    it 'should not authenticate with invalid password' do
+      subject.save
+      expect(User.authenticate_with_credentials(subject.email, "Asdfasdf")).to be_nil
+    end
+    it 'should be fine with trailing spaces' do
+      subject.save
+      spacemail = "   #{subject.email}   "
+      expect(User.authenticate_with_credentials(spacemail, subject.password)).to eq subject
+    end
+    it 'should not be case sensitive' do
+      subject.save
+      upmail = subject.email.upcase
+      expect(User.authenticate_with_credentials(upmail, subject.password)).to eq subject
+    end
+  end
 end
 
 
