@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
+  has_many :ratings
+  
   validates :password_confirmation, presence: true
   validates :password, presence: true, length: { in: 4..40 }
   validates :name, presence: true
