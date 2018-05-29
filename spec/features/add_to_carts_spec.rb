@@ -17,16 +17,16 @@ RSpec.feature "Visitor navigates to home page and adds to cart", type: :feature,
     end
   end
 
-  scenario "They see all products" do
+  scenario "They can add to cart" do
     # ACT
     visit root_path
 
+    save_screenshot
     expect(page).to have_content 'My Cart (0)'
     first('.product').click_link('Add')
-
+    #click_link('Add', match: :first)
     # DEBUG
-    #save_screenshot
-
+    save_screenshot
     # VERIFY
     expect(page).to have_content 'My Cart (1)'
   end
